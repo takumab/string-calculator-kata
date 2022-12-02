@@ -1,4 +1,4 @@
-import { stringCalculator } from "../src/stringCalculator";
+import {stringCalculator} from "../src/stringCalculator";
 
 describe('String Calculator', () => {
   it.each`
@@ -20,4 +20,11 @@ describe('String Calculator', () => {
     const result = stringCalculator(commaSeparatedString)
     expect(result).toBe(sum)
   })
+  it('should not allow negative number 2', () => {
+    expect(() => stringCalculator("1, -2")).toThrow(new Error("negatives not allowed"))
+  });
+
+  it('should not allow negative numbers 4 and 3', () => {
+    expect(() => stringCalculator("1, -4, -3")).toThrow(new Error("negatives not allowed"))
+  });
 });
