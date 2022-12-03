@@ -20,15 +20,13 @@ describe('String Calculator', () => {
     const result = stringCalculator(commaSeparatedString)
     expect(result).toBe(sum)
   })
-  it('should not allow negative number 2', () => {
-    expect(() => stringCalculator("1,-2")).toThrow(new Error("negatives not allowed"))
-  });
-
-  it('should not allow negative numbers 4 and 3', () => {
-    expect(() => stringCalculator("1,-4,-3")).toThrow(new Error("negatives not allowed"))
-  });
 
   it('should not allow negative numbers', () => {
     expect(() => stringCalculator("1,-4,-3,-7,-9,-10")).toThrow(new Error("negatives not allowed"))
+  });
+
+  it('should ignore numbers larger than 1000', () => {
+    const result = stringCalculator("1001,2");
+    expect(result).toEqual(2)
   });
 });
