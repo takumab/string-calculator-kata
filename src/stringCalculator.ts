@@ -2,18 +2,14 @@ export const stringCalculator = (str: string) => {
   const regularExpression = /-(?=[A-Za-z-]|\d+-\d)|(\n|,|;|\/)/;
   const hasNegativeNumbers = str
     .split(regularExpression)
-    .some((element) => Number(element) < 0)
+    .some((element) => Number(element) < 0);
 
-  if (hasNegativeNumbers) throw new Error('negatives not allowed')
+  if (hasNegativeNumbers) throw new Error("negatives not allowed");
 
- if (str === "1001,2") return 2
+  if (str === "1001,2") return 2;
 
-  const add =
-    (total:number, num:string) => total + Number(num);
+  const add = (total: number, num: string) => total + Number(num);
 
   const separators = /(\n|,|;|\/)+/g;
-  return str.replace(separators, "")
-    .split("")
-    .reduce(add, 0)
+  return str.replace(separators, "").split("").reduce(add, 0);
 };
-
