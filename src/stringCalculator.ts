@@ -9,7 +9,8 @@ export const stringCalculator = (str: string) => {
   const add =
     (total:number, num:string) => total + Number(num);
 
-  return str.replace(/(\n|,|;|\/)/g, "")
+  const separators = /(\n|,|;|\/)/g;
+  return str.replace(separators, "")
     .split("")
     .reduce(add, 0)
 };
