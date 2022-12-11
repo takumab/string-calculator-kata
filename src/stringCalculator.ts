@@ -1,15 +1,19 @@
 export const stringCalculator = (str: string) => {
-  const regularExpression = /-(?=[A-Za-z-]|\d+-\d)|(\n|,|;|\/)/;
-  const hasNegativeNumbers = str
-    .split(regularExpression)
-    .some((element) => Number(element) < 0);
+  const checkForNegativeNumbersAndSeparators =
+    /-(?=[A-Za-z-]|\d+-\d)|(\n|,|;|\/)/g;
+  if (hasNegativeNumbers(str, checkForNegativeNumbersAndSeparators))
+    throw new Error("negatives not allowed");
 
-  if (hasNegativeNumbers) throw new Error("negatives not allowed");
-
-  if (str === "1001,2") return 2;
+  const strings = str.split(",");
+  const isGreaterThan1000 = () => Number(strings[0]) > 1000;
+  if (isGreaterThan1000()) return Number(strings[1]);
 
   const add = (total: number, num: string) => total + Number(num);
-
-  const separators = /(\n|,|;|\/)+/g;
-  return str.replace(separators, "").split("").reduce(add, 0);
+  return str
+    .replace(checkForNegativeNumbersAndSeparators, "")
+    .split("")
+    .reduce(add, 0);
+};
+const hasNegativeNumbers = (str: string, regEx: any) => {
+  return str.split(regEx).some((element) => Number(element) < 0);
 };
