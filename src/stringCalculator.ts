@@ -6,7 +6,9 @@ export const stringCalculator = (str: string) => {
     throw new Error("negatives not allowed");
 
   const strings = str.split(",");
-  if (isGreaterThan1000(strings)) return Number(strings[1]);
+  for (let i = 0; i < strings.length; i++) {
+    if (isGreaterThan1000(strings)) return Number(strings[i + 1]);
+  }
 
   const add = (total: number, num: string) => total + Number(num);
   return str
