@@ -5,11 +5,8 @@ describe("String Calculator", () => {
     sum   | commaSeparatedString
     ${0}  | ${""}
     ${1}  | ${"1"}
-    ${2}  | ${"2"}
     ${3}  | ${"1,2"}
-    ${7}  | ${"3,4"}
     ${6}  | ${"1,2,3"}
-    ${15} | ${"4,5,6"}
     ${10} | ${"2,2,2,2,2"}
     ${45} | ${"1,2,3,4,5,6,7,8,9"}
     ${3}  | ${"1\n2"}
@@ -33,5 +30,10 @@ describe("String Calculator", () => {
   it("should ignore numbers larger than 1000", () => {
     const result = stringCalculator("1001,2");
     expect(result).toEqual(2);
+  });
+
+  it("should ignore numbers larger than 1000", () => {
+    const result = stringCalculator("1004,5");
+    expect(result).toEqual(5);
   });
 });

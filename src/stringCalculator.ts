@@ -20,5 +20,5 @@ const hasNegativeNumbers = (str: string, regEx: any) => {
 };
 
 const isGreaterThan1000 = (arr: string[]) => {
-  return Number(arr[0]) > 1000;
+  return arr.some((num) => Number(num) > 1000);
 };
