@@ -7,7 +7,7 @@ export const stringCalculator = (stringOfNumbers: string) => {
 
   const stringyfiedNumbers = stringOfNumbers.split(",");
   for (let i = 0; i < stringyfiedNumbers.length; i++) {
-    if (isGreaterThan1000(stringyfiedNumbers))
+    if (isGreaterThan1000(stringyfiedNumbers[i]))
       return Number(stringyfiedNumbers[i + 1]);
   }
 
@@ -21,5 +21,5 @@ export const stringCalculator = (stringOfNumbers: string) => {
 const hasNegativeNumbers = (stringOfNumbers: string, regEx: any) =>
   stringOfNumbers.split(regEx).some((num) => Number(num) < 0);
 
-const isGreaterThan1000 = (stringyfiedNumbers: string[]) =>
-  stringyfiedNumbers.some((num) => Number(num) > 1000);
+const isGreaterThan1000 = (stringyfiedNumber: string) =>
+  Number(stringyfiedNumber) > 1000;
