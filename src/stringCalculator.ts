@@ -5,24 +5,22 @@ export const stringCalculator = (stringOfNumbers: string) => {
   if (hasNegativeNumbers(stringOfNumbers, checkForNegativeNumbersAndSeparators))
     throw new Error("negatives not allowed");
 
-  const arrayOfNumbers = stringOfNumbers.split(",");
-  for (let i = 0; i < arrayOfNumbers.length; i++) {
-    if (isGreaterThan1000(arrayOfNumbers[i]))
-      return Number(arrayOfNumbers[i + 1]);
-  }
-
-  const add = (total: number, num: number) => total + num;
+  const arrayOfNumbers = stringOfNumbers.split(
+    checkForNegativeNumbersAndSeparators
+  );
   const toNumber = (num: string) => Number(num);
-  return stringOfNumbers
-    .replace(checkForNegativeNumbersAndSeparators, "")
-    .split("")
+  const isNotANumber = (num: number) => !isNaN(num);
+  const add = (total: number, num: number) => total + num;
+  return arrayOfNumbers
     .map(toNumber)
+    .filter(isNotANumber)
+    .filter(isLessThan1000)
     .reduce(add, 0);
 };
 
 const hasNegativeNumbers = (stringOfNumbers: string, regEx: any) =>
   stringOfNumbers.split(regEx).some((num) => Number(num) < 0);
 
-const isGreaterThan1000 = (num: string) => {
-  return Number(num) > 1000;
+const isLessThan1000 = (num: number) => {
+  return num < 1000;
 };
