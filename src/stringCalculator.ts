@@ -21,6 +21,4 @@ export const stringCalculator = (stringOfNumbers: string) => {
 const hasNegativeNumbers = (stringOfNumbers: string, regEx: any) =>
   stringOfNumbers.split(regEx).some((num) => Number(num) < 0);
 
-const isLessThan1000 = (num: number) => {
-  return num < 1000;
-};
+const isLessThan1000 = (num: number) => num < 1000;
